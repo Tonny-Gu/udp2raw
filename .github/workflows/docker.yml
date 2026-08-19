@@ -21,15 +21,27 @@ env:
 jobs:
   docker-build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
         include:
           - platform: linux/amd64
             arch_label: amd64
+          - platform: linux/386
+            arch_label: 386
+          - platform: linux/arm/v6
+            arch_label: arm-v6
+          - platform: linux/arm/v7
+            arch_label: arm-v7
           - platform: linux/arm64
             arch_label: arm64
+          - platform: linux/ppc64le
+            arch_label: ppc64le
+          - platform: linux/riscv64
+            arch_label: riscv64
+          - platform: linux/s390x
+            arch_label: s390x
     steps:
       - name: Checkout
         uses: actions/checkout@v7
